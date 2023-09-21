@@ -2,14 +2,18 @@ import cv2
 import numpy as np
 from mss import mss
 
-ScreenX = 2560  # 屏幕宽
-ScreenY = 1600  # 屏幕高
+# ScreenX = 2560  # 屏幕宽
+# ScreenY = 1600  # 屏幕高
+# ScreenX = 1536  # 屏幕宽
+# ScreenY = 864  # 屏幕高
+ScreenX = 1920  # 屏幕宽
+ScreenY = 1080  # 屏幕高
 # 定义截图范围 (左上角X，左上角Y，右下角X，右下角Y)
 window_size = (
-    int(ScreenX / 2 - 320),
-    int(ScreenY / 2 - 320),
-    int(ScreenX / 2 + 320),
-    int(ScreenY / 2 + 320))
+    int(ScreenX / 2 - 300),
+    int(ScreenY / 2 - 300),
+    int(ScreenX / 2 + 300),
+    int(ScreenY / 2 + 300))
 
 # 实例化mss
 Screenshot_value = mss()

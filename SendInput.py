@@ -6,7 +6,7 @@ DWORD = c_ulong
 ULONG_PTR = POINTER(DWORD)
 
 
-# https://learn.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-sendinput
+# https://learn.microsoft.com/en-us/windows/win32/api/winuser/n f-winuser-sendinput
 
 class MOUSEINPUT(Structure):
     _fields_ = (('dx', LONG),
@@ -31,7 +31,7 @@ def SendInput(*inputs):
     LPINPUT = INPUT * nInputs
     pInputs = LPINPUT(*inputs)
     cbSize = c_int(sizeof(INPUT))
-    return windll.user32.SendInput(nInputs, pInputs, cbSize)
+    return windll.user.SendInput(nInputs, pInputs, cbSize)
 
 
 def Input(structure):

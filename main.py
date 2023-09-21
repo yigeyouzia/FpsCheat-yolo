@@ -1,9 +1,10 @@
 import math
 import threading
 import time
+import pyautogui
+
 
 import numpy as np
-import pyautogui
 import torch
 from utils.augmentations import letterbox
 from models.common import DetectMultiBackend
@@ -12,7 +13,6 @@ from utils.plots import Annotator
 from utils.torch_utils import smart_inference_mode
 
 from ScreenShot import screenshot
-from SendInput import *
 
 import pynput.mouse
 from pynput.mouse import Listener
@@ -96,11 +96,10 @@ def run():
                 print(f"目标信息：{target_info}")
 
                 # if is_x2_pressed:
-                # mouse_xy(int(target_info[0] - 320), int(target_info[1] - 320))
                 target_x = (1920 / 2) + int(target_info[0] - 320)
                 target_y = (1080 / 2) + int(target_info[1] - 320)
                 pyautogui.moveTo(target_x, target_y)
-                time.sleep(0.1)  # 主动睡眠，防止推理过快,鼠标移动相同的两次
+                # time.sleep(0.03)  # 主动睡眠，防止推理过快,鼠标移动相同的两次
 
             im0 = annotator.result()
             cv2.imshow('window', im0)
@@ -108,5 +107,5 @@ def run():
 
 
 if __name__ == "__main__":
-    threading.Thread(target=mouse_listener).start()
+    # threading.Thread(target=mouse_listener).start()
     run()
