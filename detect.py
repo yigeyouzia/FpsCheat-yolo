@@ -4,7 +4,10 @@ import time
 
 import numpy as np
 import pyautogui
+import pydirectinput
 import torch
+import win32api
+
 from utils.augmentations import letterbox
 from models.common import DetectMultiBackend
 from utils.general import (cv2, non_max_suppression, scale_boxes, xyxy2xywh)
@@ -42,7 +45,8 @@ def run():
     # device = torch.device('cuda:0')
     # model = DetectMultiBackend(weights='./weights/yolov5n.pt', device=device, dnn=False, data=False, fp16=True)
     device = torch.device('cpu')
-    model = DetectMultiBackend(weights='./weights/yolov5n.pt', device=device, dnn=False, data=False, fp16=False)
+    model = DetectMultiBackend(weights='./weights/csgo.pt', device=device, dnn=False, data=False, fp16=False)
+    # model = DetectMultiBackend(weights='./weights/yolov5n.pt', device=device, dnn=False, data=False, fp16=False)
 
     # 读取图片
     while True:
@@ -96,11 +100,14 @@ def run():
                 print(f"目标信息：{target_info}")
 
                 # if is_x2_pressed:
-                # mouse_xy(int(target_info[0] - 320), int(target_info[1] - 320))
-                target_x = (1920 / 2) + int(target_info[0] - 320)
-                target_y = (1080 / 2) + int(target_info[1] - 320)
-                pyautogui.moveTo(target_x, target_y)
+                mouse_xy(int(target_info[0] - 300), int(target_info[1] - 300))
                 time.sleep(0.1)  # 主动睡眠，防止推理过快,鼠标移动相同的两次
+                # target_x = int(1920 / 2) + int(target_info[0] - 320)
+                # target_y = int(1080 / 2) + int(target_info[1] - 320)
+                # point = (target_x, target_y)
+                # pyautogui.moveTo(target_x, target_y)
+                # win32api.SetCursorPos(point)
+                # pydirectinput.moveTo(target_x, target_y)
 
             im0 = annotator.result()
             cv2.imshow('window', im0)

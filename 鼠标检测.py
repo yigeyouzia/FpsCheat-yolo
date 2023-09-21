@@ -10,7 +10,7 @@ def mouse_click(x, y, button, pressed):
     # print("debug")
     # print(x, y, button, pressed)
     print("检测到了")
-    if pressed and button == pynput.mouse.Button.left:
+    if pressed and button == pynput.keyboard.KeyCode:
         print("1")
         mouse_xy(x + 100, y + 100);
     elif not pressed and button == pynput.mouse.Button.left:
