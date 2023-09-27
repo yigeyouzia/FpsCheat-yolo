@@ -45,6 +45,7 @@ def run():
     # device = torch.device('cuda:0')
     # model = DetectMultiBackend(weights='./weights/yolov5n.pt', device=device, dnn=False, data=False, fp16=True)
     device = torch.device('cpu')
+    # model = DetectMultiBackend(weights='./weights/best_csgo.pt', device=device, dnn=False, data=False, fp16=False)
     model = DetectMultiBackend(weights='./weights/csgo.pt', device=device, dnn=False, data=False, fp16=False)
     # model = DetectMultiBackend(weights='./weights/yolov5n.pt', device=device, dnn=False, data=False, fp16=False)
 
@@ -100,18 +101,28 @@ def run():
                 print(f"目标信息：{target_info}")
 
                 # if is_x2_pressed:
-                mouse_xy(int(target_info[0] - 300), int(target_info[1] - 300))
-                time.sleep(0.1)  # 主动睡眠，防止推理过快,鼠标移动相同的两次
-                # target_x = int(1920 / 2) + int(target_info[0] - 320)
-                # target_y = int(1080 / 2) + int(target_info[1] - 320)
-                # point = (target_x, target_y)
+                # 1
+                mouse_xy(int(target_info[0] - 320), int(target_info[1] - 320))
+                # 2
+                # target_x = (1920 / 2) + (target_info[0] - 320)
+                # target_y = (1080 / 2) + (target_info[1] - 320)
+                # pydirectinput.moveTo(int(target_x), int(target_y))
+                for i1 in range(5):
+                    pydirectinput.click()
+                    time.sleep(0.08)
+                # time.sleep(0.01)
+                # pydirectinput.click(button='right')
+                # pydirectinput.click()
+                # 3
                 # pyautogui.moveTo(target_x, target_y)
+                # 4
+                # point = (target_x, target_y)
                 # win32api.SetCursorPos(point)
-                # pydirectinput.moveTo(target_x, target_y)
+                time.sleep(0.09)  # 主动睡眠，防止推理过快,鼠标移动相同的两次
 
-            im0 = annotator.result()
-            cv2.imshow('window', im0)
-            cv2.waitKey(1)
+        im0 = annotator.result()
+        cv2.imshow('window', im0)
+        cv2.waitKey(1)
 
 
 if __name__ == "__main__":
