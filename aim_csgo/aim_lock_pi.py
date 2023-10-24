@@ -8,6 +8,8 @@ from math import *
 from SendInput import mouse_xy
 
 flag = 0
+
+
 def lock(aims, mouse, top_x, top_y, len_x, len_y, args):
     mouse_pos_x, mouse_pos_y = mouse.position
     aims_copy = aims.copy()
@@ -35,16 +37,24 @@ def lock(aims, mouse, top_x, top_y, len_x, len_y, args):
             if flag:
                 return
             ghub.mouse_xy(-rel_x, -rel_y)  # (546, -424)
+            print(-rel_x, -rel_y)
+            # if (0 <= abs(rel_x) <= 40) and 0 <= abs(rel_y) <= 40:
+            #     for _ in range(3):
+            #         pydirectinput.click()
+            # time.sleep(0.88)
             # pydirectinput.moveRel(xOffset=-rel_x, yOffset=-rel_y, relative=True)
             # mouse_xy(-rel_x, -rel_y)
-            # pydirectinput.click()
         elif tag in [args.lock_tag[1], args.lock_tag[3]]:
             rel_y = int(k / args.lock_sen * atan((mouse_pos_y - y_center + 1 / 6 * height) / 640) * 640)
             if flag:
                 return
             ghub.mouse_xy(-rel_x, -rel_y)
+            print(f"22:{-rel_x} {-rel_y}")
+            # if (0 <= abs(rel_x) <= 40) and 0 <= abs(rel_y) <= 40:
+            #     for _ in range(3):
+            #         pydirectinput.click()
+            # time.sleep(0.88)
             # pydirectinput.moveRel(xOffset=-rel_x, yOffset=-rel_y, relative=True)
-            # pydirectinput.click()
             # mouse_xy(-rel_x, -rel_y)
             # TODO
             # pydirectinput.click()
@@ -126,7 +136,8 @@ def recoil_control(args):
                     i += 1
                     if i == 30:
                         break
-                    if a is not None and isinstance(a, pynput.mouse.Events.Click) and a.button == a.button.left and not a.pressed:
+                    if a is not None and isinstance(a,
+                                                    pynput.mouse.Events.Click) and a.button == a.button.left and not a.pressed:
                         break
                     a = next(events)
                     while a is not None and not isinstance(a, pynput.mouse.Events.Click):

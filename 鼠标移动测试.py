@@ -8,8 +8,12 @@ from SendInput import *
 # mouse_xy(1000, 1000)
 
 import pydirectinput
+
 while True:
-    pydirectinput.moveTo(300, 300) # 移动鼠标至坐标100，150
+    pydirectinput.click() # 移动鼠标至坐标100，150
+    sleep(5)
+# while True:
+#     pydirectinput.moveTo(300, 300) # 移动鼠标至坐标100，150
 # pydirectinput.click() # 点击鼠标左键
 # pydirectinput.click(200, 220) # 移动鼠标至坐标200，220，并点击左键
 # pydirectinput.move(None, 10)  # 鼠标移动相对y位置

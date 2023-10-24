@@ -4,7 +4,6 @@
 # THIS PROGRAM IS A FREE PROGRAM, WHICH IS LICENSED UNDER Caesar
 # DO NOT FORWARD THIS PROGRAM TO ANYONE
 import pydirectinput
-
 from aim_csgo.screen_inf import grab_screen_mss, grab_screen_win32, get_parameters
 from aim_csgo.cs_model import load_model
 import cv2
@@ -192,10 +191,10 @@ while True:
             # TODO 是否左键
             if lock_mode:
                 lock(aims, mouse, top_x, top_y, len_x, len_y, args)
+                time.sleep(0.01)
                 # TODO
-                for _ in range(3):
-                    pydirectinput.click()
-            # time.sleep(0.1)
+                # pydirectinput.click()
+                # for _ in range(3):
 
             if args.show_window:
                 for i, det in enumerate(aims):
